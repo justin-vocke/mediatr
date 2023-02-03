@@ -1,6 +1,6 @@
 namespace MediatrPractice.Tests
 {
-    public class Tests
+    public class ShoppingCartControllerTest
     {
         [SetUp]
         public void Setup()

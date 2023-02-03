@@ -1,6 +1,8 @@
 using MediatR;
 using MediatrPractice.Repository.Context;
+using MediatrPractice.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("Standard"))
   );
+
+builder.Services.AddScoped<ITestService, TestService>();
 
 builder.Services.AddMediatR(typeof(Program));
 
