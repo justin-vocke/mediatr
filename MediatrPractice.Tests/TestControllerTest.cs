@@ -1,16 +1,26 @@
+using MediatrPractice.Controllers;
+using MediatrPractice.Services;
+using Microsoft.AspNetCore.Mvc;
+
 namespace MediatrPractice.Tests
 {
-    public class ShoppingCartControllerTest
+    public class TestControllerTest
     {
-        [SetUp]
-        public void Setup()
+        private readonly TestController _controller;
+        private readonly ITestService _service;
+
+        public TestControllerTest()
         {
+            _service = new TestServiceFake();
+            _controller = new TestController(_service);
         }
 
         [Test]
-        public void Test1()
+        public void Get_WhenCalled_ReturnsOkResult()
         {
-            Assert.Pass();
+            //Act
+            var okResult = _controller.Get();
+            Assert.IsInstanceOf<OkObjectResult>(okResult as OkObjectResult);
         }
     }
 }

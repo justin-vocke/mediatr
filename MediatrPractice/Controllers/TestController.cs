@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatrPractice.Domain.Entities.Movies;
+using MediatrPractice.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,79 +11,47 @@ namespace MediatrPractice.Controllers
 {
     public class TestController : Controller
     {
-        // GET: TestController
-        public ActionResult Index()
+        private readonly ITestService _service;
+        public TestController(ITestService service)
         {
-            return View();
+            _service = service;
         }
-
-        // GET: TestController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Get()
         {
-            return View();
+            var items = _service.GetAllItems();
+            return Ok(items);
         }
-
-        // GET: TestController/Create
-        public ActionResult Create()
+        [HttpGet("{id}")]
+        public IActionResult Get(string title)
         {
-            return View();
+            var item = _service.GetByTitle(title);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
         }
-
-        // POST: TestController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Post([FromBody] Movie value)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest(ModelState);
             }
-            catch
-            {
-                return View();
-            }
+            var item = _service.Add(value);
+            return CreatedAtAction("Get", new { title = value.Title }, item);
         }
-
-        // GET: TestController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Remove(string title)
         {
-            return View();
-        }
-
-        // POST: TestController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
+            var existingItem = _service.GetByTitle(title);
+            if (existingItem == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TestController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: TestController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _service.Remove(title);
+            return NoContent();
         }
     }
 }

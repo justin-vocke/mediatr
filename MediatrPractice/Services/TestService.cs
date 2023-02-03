@@ -18,12 +18,15 @@ namespace MediatrPractice.Services
             throw new NotImplementedException();
         }
 
-        public Movie GetById(Guid id)
+
+        public Movie GetByTitle(string title)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(Guid id)
+     
+
+        public void Remove(string title)
         {
             throw new NotImplementedException();
         }

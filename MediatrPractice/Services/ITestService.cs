@@ -11,8 +11,8 @@ namespace MediatrPractice.Services
         
             IEnumerable<Movie> GetAllItems();
             Movie Add(Movie newItem);
-            Movie GetById(Guid id);
-            void Remove(Guid id);
+            Movie GetByTitle(string title);
+            void Remove(string title);
         
     }
 }
