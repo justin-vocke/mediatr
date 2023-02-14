@@ -62,3 +62,6 @@ C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\obj\Debug\net
 C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\MediatR.dll
 C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\MediatR.Contracts.dll
 C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\Castle.Core.dll
+C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Justin Vocke\source\repos\MediatrPractice\MediatrPractice\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll

@@ -17,7 +17,8 @@ namespace MediatrPractice.Application.Movies.Querie.GetMovie
 
         public async Task<GetMovieDto> Handle(GetMovieQuery request, CancellationToken cancellationToken)
         {
-            var movie = await _dbContext.Movies.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var movie = await _dbContext.Movies.Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync(cancellationToken);
 
             if (movie != null)
             {
